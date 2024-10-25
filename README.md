@@ -1,6 +1,6 @@
-## BeeAware
+# BeeAware
 App SOAR  2024
-# Pollenic Allergy Monitoring Platform
+## Pollenic Allergy Monitoring Platform
 Allergies affect a large portion of the population, and their symptoms can be exacerbated
 by various environmental factors, including weather conditions.
 The platform's goal is to provide users with a channel for information on high-risk periods
