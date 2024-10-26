@@ -1,4 +1,4 @@
-package ch.unil.doplab.beeaware.domain;
+package ch.unil.doplab.beeaware.Domain;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
 

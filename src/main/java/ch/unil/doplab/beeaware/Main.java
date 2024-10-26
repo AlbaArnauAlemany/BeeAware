@@ -1,5 +1,7 @@
-package ch.unil.doplab.beeaware.domain;
+package ch.unil.doplab.beeaware;
 
+import ch.unil.doplab.beeaware.Domain.Beezzer;
+import ch.unil.doplab.beeaware.Domain.Pollen;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
