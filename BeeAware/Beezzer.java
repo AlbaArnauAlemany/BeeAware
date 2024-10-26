@@ -2,14 +2,14 @@ package ch.unil.doplab.beeaware.domain;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
+import java.util.Long;
 
 import static ch.unil.doplab.beeaware.domain.PasswordHasher.hashPassword;
 
 public class Beezzer {
     private static Set<String> usernames = new HashSet<>();
 
-    private UUID uuid;
+    private Long id;
     private String username;
     private String email;
     private String password;
@@ -25,11 +25,11 @@ public class Beezzer {
         this(null, username, email, password);
     }
 
-    public Beezzer(UUID uuid, String username, String email, String password) {
+    public Beezzer(Long id, String username, String email, String password) {
         if (username != null && usernames.contains(username)) {
             throw new IllegalArgumentException("Username" + username + " already used. Please try a new one.");
         }
-        this.uuid = uuid;
+        this.id = id;
         this.username = username;
         if (username != null) {
             usernames.add(username);
@@ -41,8 +41,8 @@ public class Beezzer {
         this.allergens = new HashSet<>();
     }
 
-    public UUID getUuid() {
-        return uuid;
+    public Long getUuid() {
+        return id;
     }
 
     public String getEmail() {

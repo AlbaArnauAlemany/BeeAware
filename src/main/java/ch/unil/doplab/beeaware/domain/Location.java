@@ -5,21 +5,36 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.errors.ApiException;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.ResourceBundle;
 import java.util.Scanner;
+import java.util.Set;
 
-
+@Getter
+@Setter
 public class Location {
-    private static final String APIKEY = "AIzaSyB5qyPPrL8MtoN0ifPtyUA2IQdGHAF43Mw";
-
-    private String locationID;
+    private static final String APIKEY = ResourceBundle.getBundle("application").getString("API_KEY");
+    private static long idNumber = 0;
+    private Long id;
     private double latitude;
     private double longitude;
+    private short NPA;
+    private static Set<Location> Locations = new HashSet<>();
 
-    public Location(String locationID) throws ApiException, InterruptedException, IOException {
-        this.locationID = locationID;
+
+    public Location() throws ApiException, InterruptedException, IOException {
+        this.id = idNumber++;
         setCoordinates();
+    }
+
+    public Location(Short NPA) throws ApiException, InterruptedException, IOException {
+        this();
+        this.NPA = NPA;
+
     }
 
     private static GeoApiContext getGeoApiContext() {
@@ -33,7 +48,6 @@ public class Location {
         System.out.println("Please entre your NPA and/or locality.");
         String adr = scanner.nextLine();
         GeocodingResult result = GeocodingApi.geocode(context, adr).components(ComponentFilter.country("CH")).language("fr").await()[0];
-
         double lat = Math.round(result.geometry.location.lat * 100000.0) / 100000.0;
         double lng = Math.round(result.geometry.location.lng * 100000.0) / 100000.0;
 
@@ -44,29 +58,6 @@ public class Location {
         double[]  coordinates = getCoordinates(getGeoApiContext());
         this.latitude = coordinates[0];
         this.longitude = coordinates[1];
-    }
-
-    public String getLocationID() {
-        return locationID;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public static void main(String[] args) {
-        try {
-            Location location = new Location("test_2");
-            System.out.println("Location ID: " + location.getLocationID());
-            System.out.println("Latitude: " + location.getLatitude());
-            System.out.println("Longitude: " + location.getLongitude());
-        } catch (ApiException | InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
     }
 }
 

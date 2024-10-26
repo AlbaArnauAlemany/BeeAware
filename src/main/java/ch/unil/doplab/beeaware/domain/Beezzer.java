@@ -1,18 +1,19 @@
 package ch.unil.doplab.beeaware.domain;
 
 import com.google.maps.errors.ApiException;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.UUID;
 
-import static ch.unil.doplab.beeaware.domain.PasswordHasher.hashPassword;
+import static ch.unil.doplab.beeaware.domain.PasswordUtilis.hashPassword;
 
+@Getter
+@Setter
 public class Beezzer {
-    private static Set<String> usernames = new HashSet<>();
-
-    private UUID uuid;
+    private Long id;
     private String username;
     private String email;
     private String password;
@@ -20,55 +21,30 @@ public class Beezzer {
     private String antihistamine;
     private Set<Pollen> allergens;
 
-    public Beezzer() throws IOException, InterruptedException, ApiException {
-        this(null, null, null, null);
-    }
+    private static Set<Beezzer> Beezzers = new HashSet<>();
+    private static Long idBeezzer = 0L;
 
     public Beezzer(String username, String email, String password) throws IOException, InterruptedException, ApiException {
         this(null, username, email, password);
     }
 
-    public Beezzer(UUID uuid, String username, String email, String password) throws IOException, InterruptedException, ApiException {
-        if (username != null && usernames.contains(username)) {
-            throw new IllegalArgumentException("Username" + username + " already used. Please try a new one.");
-        }
-        this.uuid = uuid;
+    public Beezzer(Long id, String username, String email, String password) throws IOException, InterruptedException, ApiException {
+        this.id = id;
         this.username = username;
-        if (username != null) {
-            usernames.add(username);
-        }
         this.email = email;
         this.password = hashPassword(password);
-        this.locationID = new Location("test_1");
+        this.locationID = new Location();
         this.allergens = new HashSet<>();
+        addBeezzer(this);
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public Location getLocationID() {
-        return locationID;
-    }
-
-    public String getAntihistamine() {
-        return antihistamine;
-    }
-
-    public void setAntihistamine(String antihistamine) {
-        this.antihistamine = antihistamine;
-    }
-
-    public Set<Pollen> getAllergens() {
-        return allergens;
+    public void addBeezzer(Beezzer beezzer){
+        for (Beezzer bee: Beezzers) {
+            if (beezzer.getUsername() != null && bee.username != null && beezzer.getUsername() == bee.username) {
+                throw new IllegalArgumentException("Username " + username + " already used. Please try a new one.");
+            }
+        }
+        Beezzers.add(beezzer);
     }
 
     public void addAllergen(Pollen pollen) {
@@ -88,18 +64,9 @@ public class Beezzer {
         for (Pollen allergen : allergens) {
             result.append(allergen.getPollenNameEN()).append(" ");
         }
+        System.out.println("ID:" + locationID.getId());
+        System.out.println("Latitude: " + locationID.getLatitude());
+        System.out.println("Longitude: " + locationID.getLongitude());
         return result.toString().trim();
-    }
-
-    public static void main(String[] args) {
-        Beezzer alba = null;
-        try {
-            alba = new Beezzer("albaaa", "alba.arnau.alemany@gmail.com", "123");
-        } catch (ApiException | InterruptedException | IOException e) {
-            e.printStackTrace();
-        }
-        alba.addAllergen(Pollen.getPollenByName("oak"));
-        alba.addAllergen(Pollen.getPollenByName("PINE"));
-        System.out.println(alba);
     }
 }

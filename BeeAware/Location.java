@@ -1,10 +1,10 @@
 package ch.unil.doplab.beeaware.domain;
 
-import java.util.UUID;
+import java.util.Long;
 
 public class Location {
 
-    private UUID locationID;
+    private Long locationID;
     private Integer NPA;
     private String locality;
     private String country;
