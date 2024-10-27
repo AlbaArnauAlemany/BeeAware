@@ -13,7 +13,7 @@ public class Beezzer {
     private String username;
     private String email;
     private String password;
-    private Location locationID;
+    private Location location;
     private Boolean antihistamine;
     private Set<Pollen> allergens;
 
@@ -36,7 +36,7 @@ public class Beezzer {
         }
         this.email = email;
         this.password = hashPassword(password);
-        this.locationID = new Location();
+        this.location = new Location();
         this.antihistamine = false;
         this.allergens = new HashSet<>();
     }
@@ -53,8 +53,8 @@ public class Beezzer {
         return username;
     }
 
-    public Location getLocationID() {
-        return locationID;
+    public Location getlocation() {
+        return location;
     }
 
     public Boolean getAntihistamine() {

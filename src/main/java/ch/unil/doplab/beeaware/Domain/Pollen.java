@@ -3,7 +3,7 @@ package ch.unil.doplab.beeaware.Domain;
 import java.util.*;
 
 public class Pollen {
-    private final String pollenID;
+    private Long id;
     private final String pollenNameEN;
 
     private static final Map<String, Pollen> predefinedPollens = new HashMap<>();
@@ -11,26 +11,27 @@ public class Pollen {
     // API Swiss pollens: hazel, alder, ash, birch, cottonwood, oak, olive, pine, grasses, ragweed, mugwort
     // in french: noisette, aulne, frêne, bouleau, peuplier, chêne, olive, pin, herbes, herbe à poudre, armoise
     static {
-        predefinedPollens.put("HAZEL", new Pollen("Pollen2", "hazel"));
-        predefinedPollens.put("ALDER", new Pollen("Pollen2", "alder"));
-        predefinedPollens.put("ASH", new Pollen("Pollen3", "ash"));
-        predefinedPollens.put("BIRCH", new Pollen("Pollen4", "birch"));
-        predefinedPollens.put("COTTONWOOD", new Pollen("Pollen5", "cottonwood"));
-        predefinedPollens.put("OAK", new Pollen("Pollen6", "oak"));
-        predefinedPollens.put("OLIVE", new Pollen("Pollen7", "olive"));
-        predefinedPollens.put("PINE", new Pollen("Pollen8", "pine"));
-        predefinedPollens.put("GRASSES", new Pollen("Pollen9", "grasses"));
-        predefinedPollens.put("RAGWEED", new Pollen("Pollen10", "ragweed"));
-        predefinedPollens.put("MUGWORT", new Pollen("Pollen11", "mugwort"));
+        predefinedPollens.put("HAZEL", new Pollen(0L, "Hazel"));
+        predefinedPollens.put("ALDER", new Pollen(1L, "Alder"));
+        predefinedPollens.put("ASH", new Pollen(2L, "Ash"));
+        predefinedPollens.put("BIRCH", new Pollen(3L, "Birch"));
+        predefinedPollens.put("COTTONWOOD", new Pollen(4L, "Cottonwood"));
+        predefinedPollens.put("OAK", new Pollen(5L, "Oak"));
+        predefinedPollens.put("OLIVE", new Pollen(6L, "Olive"));
+        predefinedPollens.put("PINE", new Pollen(7L, "Pine"));
+        predefinedPollens.put("GRASSES", new Pollen(8L, "Grasses"));
+        predefinedPollens.put("RAGWEED", new Pollen(9L, "Ragweed"));
+        predefinedPollens.put("MUGWORT", new Pollen(10L, "Mugwort"));
+        predefinedPollens.put("WEED", new Pollen(11L, "Weed"));
     }
 
-    private Pollen(String pollenID, String pollenNameEN) {
-        this.pollenID = pollenID;
+    private Pollen(Long id, String pollenNameEN) {
+        this.id = id;
         this.pollenNameEN = pollenNameEN;
     }
 
-    public String getPollenID() {
-        return pollenID;
+    public Long getPollenID() {
+        return id;
     }
 
     public String getPollenNameEN() {

@@ -4,7 +4,7 @@ import java.util.Long;
 
 public class Location {
 
-    private Long locationID;
+    private Long location;
     private Integer NPA;
     private String locality;
     private String country;

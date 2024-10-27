@@ -11,8 +11,9 @@ import lombok.Setter;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 import java.util.Set;
+
+import static ch.unil.doplab.beeaware.Utilis.addLocation;
 
 @Getter
 @Setter
@@ -22,18 +23,15 @@ public class Location {
     private Long id;
     private double latitude;
     private double longitude;
-    private short NPA;
+    private String country;
+    private int NPA;
     private static Set<Location> Locations = new HashSet<>();
 
-
-    public Location() throws ApiException, InterruptedException, IOException {
-        this.id = idNumber++;
-        setCoordinates();
-    }
-
-    public Location(Short NPA) throws ApiException, InterruptedException, IOException {
-        this();
+    public Location(int NPA, String country) throws ApiException, InterruptedException, IOException {
         this.NPA = NPA;
+        this.country = country;
+        addLocation(this);
+        setCoordinates(this);
     }
 
     private static GeoApiContext getGeoApiContext() {
@@ -42,30 +40,18 @@ public class Location {
                 .build();
     }
 
-    private static double[] getCoordinates(GeoApiContext context) throws ApiException, InterruptedException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please entre your NPA and/or locality.");
-        String adr = scanner.nextLine();
-        GeocodingResult result = GeocodingApi.geocode(context, adr).components(ComponentFilter.country("CH")).language("fr").await()[0];
+    private static double[] getCoordinates(GeoApiContext context, Location location) throws ApiException, InterruptedException, IOException {
+        GeocodingResult result = GeocodingApi.geocode(context, String.valueOf(location.NPA)).components(ComponentFilter.country(location.country)).language("fr").await()[0];
         double lat = Math.round(result.geometry.location.lat * 100000.0) / 100000.0;
         double lng = Math.round(result.geometry.location.lng * 100000.0) / 100000.0;
 
         return new double[]{lat, lng};
     }
 
-    private void setCoordinates() throws ApiException, InterruptedException, IOException {
-        double[]  coordinates = getCoordinates(getGeoApiContext());
+    private void setCoordinates(Location location) throws ApiException, InterruptedException, IOException {
+        double[]  coordinates = getCoordinates(getGeoApiContext(), location);
         this.latitude = coordinates[0];
         this.longitude = coordinates[1];
     }
-
-//    public void addLocation(Location location){
-//        for (Location loc: Locations) {
-//            if (lo != null && bee.username != null && beezzer.getUsername() == bee.username) {
-//                throw new IllegalArgumentException("Username " + username + " already used. Please try a new one.");
-//            }
-//        }
-//        Beezzers.add(beezzer);
-//    }
 }
 

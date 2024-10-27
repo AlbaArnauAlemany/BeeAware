@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
+import static ch.unil.doplab.beeaware.Utilis.addBeezzer;
+
 @Getter
 @Setter
 public class Beezzer {
@@ -15,35 +17,25 @@ public class Beezzer {
     private String username;
     private String email;
     private String password;
-    private Location locationID;
+    private Location location;
     private String antihistamine;
     private Set<Pollen> allergens;
 
-    private static Set<Beezzer> Beezzers = new HashSet<>();
-    private static Long idBeezzer = 0L;
-
-    public Beezzer(String username, String email, String password) throws IOException, InterruptedException, ApiException {
-        this(null, username, email, password);
+    public Beezzer(String username, String email, String password, int NPA, String country) throws IOException, InterruptedException, ApiException {
+        this(null, username, email, password, NPA, country);
     }
 
-    public Beezzer(Long id, String username, String email, String password) throws IOException, InterruptedException, ApiException {
+    public Beezzer(Long id, String username, String email, String password, int NPA, String country) throws IOException, InterruptedException, ApiException {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = PasswordUtilis.hashPassword(password);
-        this.locationID = new Location();
+        this.location = new Location(NPA, country);
         this.allergens = new HashSet<>();
         addBeezzer(this);
     }
 
-    public void addBeezzer(Beezzer beezzer){
-        for (Beezzer bee: Beezzers) {
-            if (beezzer.getUsername() != null && bee.username != null && beezzer.getUsername() == bee.username) {
-                throw new IllegalArgumentException("Username " + username + " already used. Please try a new one.");
-            }
-        }
-        Beezzers.add(beezzer);
-    }
+
 
     public void addAllergen(Pollen pollen) {
         if (pollen != null && Pollen.getPredefinedPollens().contains(pollen)) {
@@ -62,9 +54,11 @@ public class Beezzer {
         for (Pollen allergen : allergens) {
             result.append(allergen.getPollenNameEN()).append(" ");
         }
-        System.out.println("ID:" + locationID.getId());
-        System.out.println("Latitude: " + locationID.getLatitude());
-        System.out.println("Longitude: " + locationID.getLongitude());
+        System.out.println("ID: " + location.getId());
+        System.out.println("NPA: " + location.getNPA());
+        System.out.println("Country:" + location.getCountry());
+        System.out.println("Latitude: " + location.getLatitude());
+        System.out.println("Longitude: " + location.getLongitude());
         return result.toString().trim();
     }
 }
