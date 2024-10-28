@@ -7,6 +7,8 @@ import ch.unil.doplab.beeaware.Domain.Symptom;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static ch.unil.doplab.beeaware.Utilis.*;
@@ -26,10 +28,14 @@ public class Main {
 
         Symptom symptom1 = new Symptom(alba.getId(), 8, false);
         Symptom symptom2 = new Symptom(alba.getId(), 5, false);
+        Symptom symptom3 = new Symptom(alba.getId(), 3, false);
         addSymptom(symptom1, alba);
         addSymptom(symptom2, alba);
+        addSymptomForASpecificDate(symptom3, alba, new GregorianCalendar(2024, Calendar.FEBRUARY, 11).getTime());
         System.out.println(alba);
-        printSymptoms(alba);
+        for (Symptom symptom:getSymptomsForASpecificBeezzer(alba)) {
+            System.out.println(symptom);
+        };
 
         forecastAllLocation();
 

@@ -46,12 +46,40 @@ public class Utilis {
         Symptoms.add(symptom);
     }
 
-    public static void printSymptoms(Beezzer beezzer){
+    public static void addSymptom(Symptom symptom, Beezzer beezzer){
+        Date todayDate = new Date();
+        symptom.setDate(todayDate);
         for (Symptom sym: Symptoms) {
-            if (beezzer.getId() == sym.getUserId()) {
-                System.out.println(sym);
+            if (beezzer.getId() == sym.getUserId() && isSameDay(sym.getDate(), todayDate)) {
+                symptom.setId(sym.getId());
+                Symptoms.set(Symptoms.indexOf(sym), symptom);
+                return;
             }
         }
+        symptom.setId(idSymptom++);
+        Symptoms.add(symptom);
+    }
+
+    public static List<Symptom> getSymptomsForASpecificBeezzer(Beezzer beezzer){
+        List<Symptom> symptoms = new ArrayList<>();
+        for (Symptom sym: Symptoms) {
+            if (beezzer.getId() == sym.getUserId()) {
+                symptoms.add(sym);
+            }
+        }
+        return symptoms;
+    }
+
+    public static List<Symptom>  getSymptomsForASpecificDate(Beezzer beezzer, Date date){
+        List<Symptom> symptoms = new ArrayList<>();
+        for (Symptom sym: Symptoms) {
+            if (beezzer.getId() == sym.getUserId()) {
+                if (beezzer.getId() == sym.getUserId() && isSameDay(sym.getDate(), date)) {
+                    symptoms.add(sym);
+                }
+            }
+        }
+        return symptoms;
     }
 
     public static void addPollenIndexLocation(PollenLocationIndex pollenLocationIndex) {
