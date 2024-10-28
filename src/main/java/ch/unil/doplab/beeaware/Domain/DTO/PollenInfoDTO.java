@@ -11,9 +11,10 @@ public class PollenInfoDTO {
     private String displayName;
     private int index;
     private String Recommendation;
+    private String crossReaction;
 
     @Override
     public String toString() {
-        return "Name : " + displayName + ", Index : " + index + "\n" + "Recommandation : " + Recommendation;
+        return "Name : " + displayName + ", Index : " + index + "\n" + "Recommandation : " + Recommendation+ "\n" + "Cross : " + crossReaction;
     }
 }

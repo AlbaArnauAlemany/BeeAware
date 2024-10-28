@@ -3,13 +3,13 @@ package ch.unil.doplab.beeaware;
 import ch.unil.doplab.beeaware.Domain.Beezzer;
 import ch.unil.doplab.beeaware.Domain.DTO.PollenInfoDTO;
 import ch.unil.doplab.beeaware.Domain.Pollen;
+import ch.unil.doplab.beeaware.Domain.Symptom;
 import com.google.maps.errors.ApiException;
 
 import java.io.IOException;
 import java.util.List;
 
-import static ch.unil.doplab.beeaware.Utilis.forecastAllLocation;
-import static ch.unil.doplab.beeaware.Utilis.getIndexForSpecificBeezer;
+import static ch.unil.doplab.beeaware.Utilis.*;
 
 
 public class Main {
@@ -23,7 +23,13 @@ public class Main {
         }
         alba.addAllergen(Pollen.getPollenByName("Grasses"));
         alba.addAllergen(Pollen.getPollenByName("Weed"));
+
+        Symptom symptom1 = new Symptom(alba.getId(), 8, false);
+        Symptom symptom2 = new Symptom(alba.getId(), 5, false);
+        addSymptom(symptom1, alba);
+        addSymptom(symptom2, alba);
         System.out.println(alba);
+        printSymptoms(alba);
 
         forecastAllLocation();
 

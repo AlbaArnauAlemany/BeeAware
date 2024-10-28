@@ -1,7 +1,12 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.*;
 
+@Getter
+@Setter
 public class Pollen {
     private Long id;
     private final String pollenNameEN;
@@ -28,14 +33,6 @@ public class Pollen {
     private Pollen(Long id, String pollenNameEN) {
         this.id = id;
         this.pollenNameEN = pollenNameEN;
-    }
-
-    public Long getPollenID() {
-        return id;
-    }
-
-    public String getPollenNameEN() {
-        return pollenNameEN;
     }
 
     public static Set<Pollen> getPredefinedPollens() {

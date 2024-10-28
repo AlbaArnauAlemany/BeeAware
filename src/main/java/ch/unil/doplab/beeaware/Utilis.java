@@ -1,15 +1,11 @@
 package ch.unil.doplab.beeaware;
 
-import ch.unil.doplab.beeaware.Domain.Beezzer;
+import ch.unil.doplab.beeaware.Domain.*;
 import ch.unil.doplab.beeaware.Domain.DTO.PollenInfoDTO;
-import ch.unil.doplab.beeaware.Domain.Location;
-import ch.unil.doplab.beeaware.Domain.Pollen;
-import ch.unil.doplab.beeaware.Domain.PollenLocationIndex;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 import static ch.unil.doplab.beeaware.Domain.PollenLocationIndex.pollenForecast;
 
@@ -17,12 +13,14 @@ public class Utilis {
     public static final List<PollenLocationIndex> PollenLocationIndexArray = new ArrayList<>();
     public static Set<Location> Locations = new HashSet<>();
     public static Set<Beezzer> Beezzers = new HashSet<>();
+    public static List<Symptom> Symptoms = new ArrayList<>();
 
 
 
     public static Long idBeezzer = 0L;
     public static Long idLocation = 0L;
     public static Long idPollenIndex = 0L;
+    public static Long idSymptom = 0L;
 
 
     public static void addBeezzer(Beezzer beezzer){
@@ -33,6 +31,28 @@ public class Utilis {
         }
         beezzer.setId(idBeezzer++);
         Beezzers.add(beezzer);
+    }
+
+    public static void addSymptom(Symptom symptom, Beezzer beezzer){
+        Date todayDate = new Date();
+        symptom.setDate(todayDate);
+        for (Symptom sym: Symptoms) {
+            if (beezzer.getId() == sym.getUserId() && isSameDay(sym.getDate(), todayDate)) {
+                symptom.setId(sym.getId());
+                Symptoms.set(Symptoms.indexOf(sym), symptom);
+                return;
+            }
+        }
+        symptom.setId(idSymptom++);
+        Symptoms.add(symptom);
+    }
+
+    public static void printSymptoms(Beezzer beezzer){
+        for (Symptom sym: Symptoms) {
+            if (beezzer.getId() == sym.getUserId()) {
+                System.out.println(sym);
+            }
+        }
     }
 
     public static void addPollenIndexLocation(PollenLocationIndex pollenLocationIndex) {
@@ -72,7 +92,7 @@ public class Utilis {
                         for (Pollen pollen : beezzer.getAllergens()) {
                             if (pollen.getPollenNameEN().equals(pollenTypeDailyInfo.getDisplayName())) {
                                 if (pollenTypeDailyInfo.getIndexInfo() != null) {
-                                    PollenShortDTOs.add(new PollenInfoDTO(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), pollenTypeDailyInfo.getIndexInfo().getIndexDescription()));
+                                    PollenShortDTOs.add(new PollenInfoDTO(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), pollenTypeDailyInfo.getIndexInfo().getIndexDescription(), ""));
                                 }
                             }
                         }
@@ -82,7 +102,7 @@ public class Utilis {
                         for (Pollen pollen : beezzer.getAllergens()) {
                             if (pollen.getPollenNameEN().equals(pollenDailyInfo.getDisplayName())) {
                                 if (pollenDailyInfo.getIndexInfo() != null) {
-                                    PollenShortDTOs.add(new PollenInfoDTO(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), pollenDailyInfo.getIndexInfo().getIndexDescription()));
+                                    PollenShortDTOs.add(new PollenInfoDTO(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), pollenDailyInfo.getIndexInfo().getIndexDescription(), pollenDailyInfo.getPlantDescription().getCrossReaction()));
                                 }
                             }
                         }
@@ -91,5 +111,15 @@ public class Utilis {
             }
         }
         return PollenShortDTOs;
+    }
+
+    public static boolean isSameDay(Date date1, Date date2) {
+        LocalDate localDate1 = date1.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        LocalDate localDate2 = date2.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        return localDate1.isEqual(localDate2);
     }
 }

@@ -9,9 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.HashSet;
 import java.util.ResourceBundle;
-import java.util.Set;
 
 import static ch.unil.doplab.beeaware.Utilis.addLocation;
 
@@ -19,13 +17,11 @@ import static ch.unil.doplab.beeaware.Utilis.addLocation;
 @Setter
 public class Location {
     private static final String APIKEY = ResourceBundle.getBundle("application").getString("API_KEY");
-    private static long idNumber = 0;
     private Long id;
     private double latitude;
     private double longitude;
     private String country;
     private int NPA;
-    private static Set<Location> Locations = new HashSet<>();
 
     public Location(int NPA, String country) throws ApiException, InterruptedException, IOException {
         this.NPA = NPA;
