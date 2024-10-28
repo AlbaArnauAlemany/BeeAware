@@ -33,11 +33,10 @@ public class Utilis {
         Beezzers.add(beezzer);
     }
 
-    public static void addSymptom(Symptom symptom, Beezzer beezzer){
-        Date todayDate = new Date();
-        symptom.setDate(todayDate);
+    public static void addSymptomForASpecificDate(Symptom symptom, Beezzer beezzer, Date date){
+        symptom.setDate(date);
         for (Symptom sym: Symptoms) {
-            if (beezzer.getId() == sym.getUserId() && isSameDay(sym.getDate(), todayDate)) {
+            if (beezzer.getId() == sym.getUserId() && isSameDay(sym.getDate(), date)) {
                 symptom.setId(sym.getId());
                 Symptoms.set(Symptoms.indexOf(sym), symptom);
                 return;
