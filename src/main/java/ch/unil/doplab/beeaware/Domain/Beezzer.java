@@ -23,7 +23,7 @@ public class Beezzer {
     private String password;        // Password of the Beezzer, hashed for security
     private Location location;      // Location of the Beezzer composed of NPA & Country
     private String antihistamine;   // Antihistamine medication used by the Beezzer
-    private Map<Long, Pollen> allergens;  // Set of pollen allergens for the Beezzer
+    private Map<Long, Long> allergens;  // Set of pollen allergens for the Beezzer
 
     /**
      * Constructs a new Beezzer object with the specified username, email,
@@ -74,7 +74,6 @@ public class Beezzer {
         this.allergens = new HashMap<>(); // Initialize the allergens set
     }
 
-
     /**
      * Returns a string representation of the Beezzer object.
      * This method builds a string that includes the Beezzer's username, email,
@@ -91,7 +90,7 @@ public class Beezzer {
         result.append("Username: ").append(username).append("\n")
                 .append("Email: ").append(email).append("\n")
                 .append("Allergens: ");
-        for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
+        for (Map.Entry<Long, Long> allergen : allergens.entrySet()) {
 //            result.append(allergen.getValue().getPollenNameEN()).append(" ");
         }
 //        System.out.println("ID: " + location.getId());

@@ -46,7 +46,6 @@ public class Location {
     public Location(int NPA, String country) throws ApiException, InterruptedException, IOException {
         this.NPA = NPA;
         this.country = country;
-//        addLocation(this);      // Method to register or store this {@code Location} instance
         setCoordinates(this);   // Method to set the latitude and longitude based on NPA and country
     }
 

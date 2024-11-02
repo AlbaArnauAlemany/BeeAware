@@ -12,10 +12,10 @@ public class Symptom {
     private int level;
     private boolean antihistamine;
     private Date date;
-    private Long userId;
+    private Long beezzerId;
 
-    public Symptom(Long userId, int lvl, boolean antihistamine) {
-        this.userId = userId;
+    public Symptom(Long beezzerId, int lvl, boolean antihistamine) {
+        this.beezzerId = beezzerId;
         this.level = lvl;
         this.antihistamine = antihistamine;
     }
