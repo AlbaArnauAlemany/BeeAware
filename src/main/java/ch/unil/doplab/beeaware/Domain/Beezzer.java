@@ -5,60 +5,120 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
-import static ch.unil.doplab.beeaware.Utilis.addBeezzer;
+//import static ch.unil.doplab.beeaware.Utilis.addBeezzer;
+
+/**
+ * Represents a user (Beezzer) in the system, containing personal information
+ * such as username, email, password, location, and allergens.
+ */
 
 @Getter
 @Setter
 public class Beezzer {
-    private Long id;
-    private String username;
-    private String email;
-    private String password;
-    private Location location;
-    private String antihistamine;
-    private Set<Pollen> allergens;
+    private Long id;                // Unique identifier for the Beezzer
+    private String username;        // Unique username of the Beezzer
+    private String email;           // Email address of the Beezzer
+    private String password;        // Password of the Beezzer, hashed for security
+    private Location location;      // Location of the Beezzer composed of NPA & Country
+    private String antihistamine;   // Antihistamine medication used by the Beezzer
+    private Map<Long, Pollen> allergens;  // Set of pollen allergens for the Beezzer
 
-    public Beezzer(String username, String email, String password, int NPA, String country) throws IOException, InterruptedException, ApiException {
+    /**
+     * Constructs a new Beezzer object with the specified username, email,
+     * password, NPA, and country.
+     * The id parameter is set to null, allowing for simpler instantiation
+     * without providing an identifier.
+     *
+     * @param username The username for the Beezzer.
+     * @param email The email address for the Beezzer.
+     * @param password The password for the Beezzer, which will be hashed.
+     * @param NPA The NPA of the Beezzer's location.
+     * @param country The country where the Beezzer is located.
+     * @throws IOException If an input or output exception occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     * @throws ApiException If there is an error with the API call used in the Location class.
+     */
+    public Beezzer(String username, String email, String password, int NPA, String country)
+            throws IOException, InterruptedException, ApiException {
+        // this() calls the primary constructor (the one with the id
+        // parameter) by passing null as the id argument
         this(null, username, email, password, NPA, country);
     }
 
-    public Beezzer(Long id, String username, String email, String password, int NPA, String country) throws IOException, InterruptedException, ApiException {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.password = PasswordUtilis.hashPassword(password);
-        this.location = new Location(NPA, country);
-        this.allergens = new HashSet<>();
-        addBeezzer(this);
+    /**
+     * Constructs a new Beezzer object with the specified id, username, email,
+     * password, NPA, and country. The password is hashed for security, and the
+     * location is initialized based on the provided NPA and country. This
+     * constructor also initializes the allergens set and adds the Beezzer
+     * instance to some collection.
+     *
+     * @param id The unique identifier for the Beezzer (can be null for new instances).
+     * @param username The username for the Beezzer.
+     * @param email The email address for the Beezzer.
+     * @param password The password for the Beezzer, which will be hashed.
+     * @param NPA The National Provider Identifier of the Beezzer's location.
+     * @param country The country where the Beezzer is located.
+     * @throws IOException If an input or output exception occurs.
+     * @throws InterruptedException If the operation is interrupted.
+     * @throws ApiException If there is an error with the API call used in the Location class.
+     */
+    public Beezzer(Long id, String username, String email, String password, int NPA, String country)
+            throws IOException, InterruptedException, ApiException {
+        this.id = id; // Assign the id to the Beezzer
+        this.username = username; // Assign the username to the Beezzer
+        this.email = email; // Assign the email to the Beezzer
+        this.password = PasswordUtilis.hashPassword(password); // Hash the password
+        this.location = new Location(NPA, country); // Create a new Location instance
+        this.allergens = new HashMap<>(); // Initialize the allergens set
     }
 
+//    /**
+//     * Adds a specific pollen allergen to the Beezzer's list of allergens
+//     * This method checks if the provided pollen is not null and if it is part of
+//     * the predefined pollens available in the Beezzer's country. If both conditions
+//     * are met, the pollen is added to the allergens set. If the pollen is null
+//     * or not available, an IllegalArgumentException is thrown.
+//     *
+//     * @param pollen The pollen allergen to be added. It must be a predefined pollen available in the Beezzer's country.
+//     * @throws IllegalArgumentException If the pollen is null or not available in the Beezzer's country.
+//     */
+//    public void addAllergen(Pollen pollen) {
+//        // Alba: Comme on va pouvoir afficher d'autres pays, on devrait faire en sorte que
+//        // le pollen soit dans la liste de pollen predéfinie mais aussi qu'il existe
+//        // dans le pays du Beezzer.
+//        if (pollen != null && Pollen.getPredefinedPollens().contains(pollen)) {
+//            allergens.put(pollen.getId(), pollen);
+//        } else {
+//            throw new IllegalArgumentException("This pollen is not available in your country.");
+//        }
+//    }
 
-
-    public void addAllergen(Pollen pollen) {
-        if (pollen != null && Pollen.getPredefinedPollens().contains(pollen)) {
-            allergens.add(pollen);
-        } else {
-            throw new IllegalArgumentException("This pollen is not available in your country.");
-        }
-    }
-
+    /**
+     * Returns a string representation of the Beezzer object.
+     * This method builds a string that includes the Beezzer's username, email,
+     * and a list of allergens. It also prints the location details such as
+     * ID, NPA, country, latitude, and longitude to the console. (The string
+     * representation is useful for logging and debugging purposes.)
+     *
+     * @return A string containing the username, email, and a space-separated
+     *         list of allergens. In addition, location details are displayed.
+     */
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
         result.append("Username: ").append(username).append("\n")
                 .append("Email: ").append(email).append("\n")
                 .append("Allergens: ");
-        for (Pollen allergen : allergens) {
-            result.append(allergen.getPollenNameEN()).append(" ");
+        for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
+//            result.append(allergen.getValue().getPollenNameEN()).append(" ");
         }
-        System.out.println("ID: " + location.getId());
-        System.out.println("NPA: " + location.getNPA());
-        System.out.println("Country:" + location.getCountry());
-        System.out.println("Latitude: " + location.getLatitude());
-        System.out.println("Longitude: " + location.getLongitude());
+//        System.out.println("ID: " + location.getId());
+//        System.out.println("NPA: " + location.getNPA());
+//        System.out.println("Country:" + location.getCountry());
+//        System.out.println("Latitude: " + location.getLatitude());
+//        System.out.println("Longitude: " + location.getLongitude());
         return result.toString().trim();
     }
 }
