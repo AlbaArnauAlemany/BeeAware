@@ -74,26 +74,6 @@ public class Beezzer {
         this.allergens = new HashMap<>(); // Initialize the allergens set
     }
 
-//    /**
-//     * Adds a specific pollen allergen to the Beezzer's list of allergens
-//     * This method checks if the provided pollen is not null and if it is part of
-//     * the predefined pollens available in the Beezzer's country. If both conditions
-//     * are met, the pollen is added to the allergens set. If the pollen is null
-//     * or not available, an IllegalArgumentException is thrown.
-//     *
-//     * @param pollen The pollen allergen to be added. It must be a predefined pollen available in the Beezzer's country.
-//     * @throws IllegalArgumentException If the pollen is null or not available in the Beezzer's country.
-//     */
-//    public void addAllergen(Pollen pollen) {
-//        // Alba: Comme on va pouvoir afficher d'autres pays, on devrait faire en sorte que
-//        // le pollen soit dans la liste de pollen predéfinie mais aussi qu'il existe
-//        // dans le pays du Beezzer.
-//        if (pollen != null && Pollen.getPredefinedPollens().contains(pollen)) {
-//            allergens.put(pollen.getId(), pollen);
-//        } else {
-//            throw new IllegalArgumentException("This pollen is not available in your country.");
-//        }
-//    }
 
     /**
      * Returns a string representation of the Beezzer object.
