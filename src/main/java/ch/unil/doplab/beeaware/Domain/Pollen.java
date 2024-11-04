@@ -1,7 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.*;
 
@@ -11,11 +10,12 @@ import java.util.*;
  * to retrieve them based on country-specific data.
  */
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Pollen {
     private Long id; // The unique identifier for the pollen type
-    private final String pollenNameEN; // The english name of the pollen
+    private String pollenNameEN; // The english name of the pollen
 
     // A map of predefined pollen types
     private static final Map<String, Pollen> predefinedPollens = new HashMap<>();
@@ -44,10 +44,10 @@ public class Pollen {
      * @param id The unique identifier for this pollen
      * @param pollenNameEN The name of the pollen in English
      */
-    private Pollen(Long id, String pollenNameEN) {
-        this.id = id;
-        this.pollenNameEN = pollenNameEN;
-    }
+//    private Pollen(Long id, String pollenNameEN) {
+//        this.id = id;
+//        this.pollenNameEN = pollenNameEN;
+//    }
 
     /**
      * Retrieves all predefined pollen types.

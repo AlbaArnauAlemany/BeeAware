@@ -1,9 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
 import com.google.maps.errors.ApiException;
-import lombok.Getter;
-import lombok.Setter;
-import org.jetbrains.annotations.NotNull;
+import lombok.*;
 
 import java.io.IOException;
 import java.util.*;
@@ -13,8 +11,9 @@ import java.util.*;
  * such as username, email, password, location, and allergens.
  */
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Beezzer {
     private Long id;                // Unique identifier for the Beezzer
     private String username;        // Unique username of the Beezzer
@@ -92,15 +91,5 @@ public class Beezzer {
         System.out.println("Latitude: " + location.getCoordinate().getLatitude());
         System.out.println("Longitude: " + location.getCoordinate().getLongitude());
         return result.toString().trim();
-    }
-    // TODO: GOOD replaceWith
-    public void replaceWith(@NotNull Beezzer beezzer) {
-        this.id = beezzer.id;
-        this.username = beezzer.username;
-        this.email = beezzer.email;
-        this.password = beezzer.password;
-        this.location = beezzer.location;
-        this.antihistamine = beezzer.antihistamine;
-        this.allergens = beezzer.allergens;
     }
 }

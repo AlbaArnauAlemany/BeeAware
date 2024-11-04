@@ -5,8 +5,7 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.ComponentFilter;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.errors.ApiException;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.checkerframework.checker.units.qual.C;
 import org.jetbrains.annotations.NotNull;
 
@@ -21,8 +20,9 @@ import java.util.ResourceBundle;
  * and longitude coordinates based on NPA and country information.
  */
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Location {
     // ResourceBundle is a Java class for loading locale-specific resources
     private Long id;            // Unique identifier for the {@code Location}
