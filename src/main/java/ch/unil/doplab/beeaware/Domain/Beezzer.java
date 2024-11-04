@@ -100,4 +100,14 @@ public class Beezzer {
 //        System.out.println("Longitude: " + location.getLongitude());
         return result.toString().trim();
     }
+    // TODO: GOOD replaceWith
+    public void replaceWith(@NotNull Beezzer beezzer) {
+        this.id = beezzer.id;
+        this.username = beezzer.username;
+        this.email = beezzer.email;
+        this.password = beezzer.password;
+        this.location = beezzer.location;
+        this.antihistamine = beezzer.antihistamine;
+        this.allergens = beezzer.allergens;
+    }
 }
