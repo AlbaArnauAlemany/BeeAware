@@ -46,13 +46,13 @@ public class Location {
         this.country = country;
     }
 
-    public void setCoordinate(Coordinate coordinate) {
-        this.coordinate = coordinate;
-    }
-
-    public Coordinate getCoordinate() {
-        return coordinate;
-    }
+//    public void setCoordinate(Coordinate coordinate) {
+//        this.coordinate = coordinate;
+//    }
+//
+//    public Coordinate getCoordinate() {
+//        return coordinate;
+//    }
 
     public void setCountry(String country) {
         this.country = country;

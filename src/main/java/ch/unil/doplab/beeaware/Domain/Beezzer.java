@@ -76,20 +76,20 @@ public class Beezzer {
      * @return A string containing the username, email, and a space-separated
      *         list of allergens. In addition, location details are displayed.
      */
-    @Override
-    public String toString() {
-        StringBuilder result = new StringBuilder();
-        result.append("Username: ").append(username).append("\n")
-                .append("Email: ").append(email).append("\n")
-                .append("Allergens: ");
-        for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
-            result.append(allergen.getValue().getPollenNameEN()).append(" ");
-        }
-        System.out.println("ID: " + location.getId());
-        System.out.println("NPA: " + location.getNPA());
-        System.out.println("Country:" + location.getCountry());
-        System.out.println("Latitude: " + location.getCoordinate().getLatitude());
-        System.out.println("Longitude: " + location.getCoordinate().getLongitude());
-        return result.toString().trim();
-    }
+//    @Override
+//    public String toString() {
+//        StringBuilder result = new StringBuilder();
+//        result.append("Username: ").append(username).append("\n")
+//                .append("Email: ").append(email).append("\n")
+//                .append("Allergens: ");
+//        for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
+//            result.append(allergen.getValue().getPollenNameEN()).append(" ");
+//        }
+//        System.out.println("ID: " + location.getId());
+//        System.out.println("NPA: " + location.getNPA());
+//        System.out.println("Country:" + location.getCountry());
+//        System.out.println("Latitude: " + location.getCoordinate().getLatitude());
+//        System.out.println("Longitude: " + location.getCoordinate().getLongitude());
+//        return result.toString().trim();
+//    }
 }
