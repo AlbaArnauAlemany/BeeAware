@@ -18,9 +18,6 @@ import java.util.ResourceBundle;
  * and longitude coordinates based on NPA and country information.
  */
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Location {
     // ResourceBundle is a Java class for loading locale-specific resources
     private Long id;            // Unique identifier for the {@code Location}
@@ -48,6 +45,39 @@ public class Location {
         this.NPA = NPA;
         this.country = country;
     }
+
+    public void setCoordinate(Coordinate coordinate) {
+        this.coordinate = coordinate;
+    }
+
+    public Coordinate getCoordinate() {
+        return coordinate;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setNPA(int NPA) {
+        this.NPA = NPA;
+    }
+
+    public int getNPA() {
+        return NPA;
+    }
+
 
     @Override
     public boolean equals(Object otherAttemptedLocation) {
