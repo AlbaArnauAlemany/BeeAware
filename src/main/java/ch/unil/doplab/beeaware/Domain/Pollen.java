@@ -43,7 +43,6 @@ public class Pollen {
      * @param id The unique identifier for this pollen
      * @param pollenNameEN The name of the pollen in English
      */
-
     @Builder
     private Pollen(Long id, String pollenNameEN) {
         this.id = id;

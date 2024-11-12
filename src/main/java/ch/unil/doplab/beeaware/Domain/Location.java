@@ -2,6 +2,7 @@ package ch.unil.doplab.beeaware.Domain;
 
 import com.google.maps.errors.ApiException;
 import lombok.*;
+
 import java.io.IOException;
 
 /**
@@ -39,6 +40,18 @@ public class Location {
     public Location(int NPA, String country){
         this.NPA = NPA;
         this.country = country;
+    }
+    @Override
+    public boolean equals(Object otherAttemptedLocation) {
+        // If both objects are the same instance, they are Equal
+        if (this == otherAttemptedLocation) return true;
+        // If the passed object is not a Location instance, return false
+        if (!(otherAttemptedLocation instanceof Location)) return false;
+
+        // If both Location instances have the same NPA & Country, they are Equal
+        Location otherLocation = (Location) otherAttemptedLocation;
+        return this.getCountry().equals(otherLocation.getCountry())
+                && this.getNPA() == otherLocation.getNPA();
     }
 }
 
