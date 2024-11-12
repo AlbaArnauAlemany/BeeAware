@@ -18,6 +18,7 @@ public class Symptom {
         this.beezzerId = beezzerId;
         this.level = lvl;
         this.antihistamine = antihistamine;
+        this.date = new Date();
     }
 
     public void updateLevel(Level lvl) {
