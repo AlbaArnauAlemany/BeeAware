@@ -1,16 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.api.client.http.HttpRequest;
-import com.google.api.client.http.HttpRequestFactory;
-import com.google.api.client.http.HttpResponse;
-import com.google.api.client.http.javanet.NetHttpTransport;
 import lombok.*;
-
-import java.io.IOException;
 import java.util.List;
-import java.util.ResourceBundle;
-
 
 @Data
 @NoArgsConstructor

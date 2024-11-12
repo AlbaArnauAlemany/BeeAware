@@ -1,18 +1,8 @@
 package ch.unil.doplab.beeaware.Domain;
 
-import com.google.maps.GeoApiContext;
-import com.google.maps.GeocodingApi;
-import com.google.maps.model.ComponentFilter;
-import com.google.maps.model.GeocodingResult;
 import com.google.maps.errors.ApiException;
 import lombok.*;
-import org.checkerframework.checker.units.qual.C;
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
-import java.util.ResourceBundle;
-
-//import static ch.unil.doplab.beeaware.Utilis.addLocation;
 
 /**
  * Represents a geographical location, defined by its latitude, longitude, country,

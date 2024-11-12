@@ -12,7 +12,6 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class Pollen {
     private Long id; // The unique identifier for the pollen type
     private String pollenNameEN; // The english name of the pollen
@@ -44,10 +43,12 @@ public class Pollen {
      * @param id The unique identifier for this pollen
      * @param pollenNameEN The name of the pollen in English
      */
-//    private Pollen(Long id, String pollenNameEN) {
-//        this.id = id;
-//        this.pollenNameEN = pollenNameEN;
-//    }
+
+    @Builder
+    private Pollen(Long id, String pollenNameEN) {
+        this.id = id;
+        this.pollenNameEN = pollenNameEN;
+    }
 
     /**
      * Retrieves all predefined pollen types.
