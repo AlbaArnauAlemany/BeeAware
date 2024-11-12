@@ -9,14 +9,23 @@ import java.util.Date;
 @AllArgsConstructor
 public class Symptom {
     private Long id;
-    private int level;
+    private Reaction reaction;
     private boolean antihistamine;
     private Date date;
     private Long beezzerId;
 
-    public Symptom(Long beezzerId, int lvl, boolean antihistamine) {
+    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine) {
         this.beezzerId = beezzerId;
-        this.level = lvl;
+        this.reaction = reaction;
         this.antihistamine = antihistamine;
+        this.date = new Date();
+    }
+
+    public void updateLevel(Reaction reaction) {
+        this.reaction = reaction;
+    }
+
+    public int getLevelValue() {
+        return reaction.getValue();
     }
 }
