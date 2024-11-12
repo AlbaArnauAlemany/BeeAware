@@ -1,6 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
-public enum Level {
+public enum Reaction {
     NO_REACTION(0),
     VERY_LOW_REACTION(1),
     LOW_REACTION(2),
@@ -10,7 +10,7 @@ public enum Level {
 
     private int value;
 
-    Level(int value) {
+    Reaction(int value) {
         this.value = value;
     }
 
@@ -18,7 +18,7 @@ public enum Level {
         return value;
     }
 
-    public static Level fromValue(int value) {
+    public static Reaction fromValue(int value) {
         return switch (value) {
             case 0 -> NO_REACTION;
             case 1 -> VERY_LOW_REACTION;
