@@ -18,6 +18,7 @@ public class Symptom {
         this.beezzerId = beezzerId;
         this.reaction = reaction;
         this.antihistamine = antihistamine;
+        this.date = new Date();
     }
 
     public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine, Date date) {
