@@ -1,5 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.maps.errors.ApiException;
 import lombok.*;
 
@@ -14,10 +16,12 @@ import java.io.IOException;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
     // ResourceBundle is a Java class for loading locale-specific resources
     private Long id;            // Unique identifier for the {@code Location}
     private String country;     // Country of the {@code Location}
+    @JsonProperty("NPA")
     private int NPA;            // NPA code of the {@code Location}
     private Coordinate coordinate;
 
@@ -40,18 +44,6 @@ public class Location {
     public Location(int NPA, String country){
         this.NPA = NPA;
         this.country = country;
-    }
-    @Override
-    public boolean equals(Object otherAttemptedLocation) {
-        // If both objects are the same instance, they are Equal
-        if (this == otherAttemptedLocation) return true;
-        // If the passed object is not a Location instance, return false
-        if (!(otherAttemptedLocation instanceof Location)) return false;
-
-        // If both Location instances have the same NPA & Country, they are Equal
-        Location otherLocation = (Location) otherAttemptedLocation;
-        return this.getCountry().equals(otherLocation.getCountry())
-                && this.getNPA() == otherLocation.getNPA();
     }
 }
 
