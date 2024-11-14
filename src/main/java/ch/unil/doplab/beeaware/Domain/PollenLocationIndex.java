@@ -1,89 +1,41 @@
 package ch.unil.doplab.beeaware.Domain;
 
-import lombok.*;
-import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.*;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class PollenLocationIndex {
     private Long id;
-    private String regionCode;
-    private List<DailyInfo> dailyInfo;
+    private String displayName;
+    private int index;
+    private Date date;
     private Location location;
+    private List<String> recommendation;
+    private String crossReaction;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class DailyInfo {
-        private Date date;
-        private List<PollenTypeInfo> pollenTypeInfo;
-        private List<PlantInfo> plantInfo;
+
+    PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction){
+        this.displayName = displayName;
+        this.index = index;
+        this.date = date;
+        this.location = location;
+        this.recommendation = recommendation;
+        this.crossReaction = crossReaction;
+    }
+    public PollenLocationIndex(PollenLocationInfo.PollenTypeInfo pollenTypeDailyInfo, Date date, Location location) {
+        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations(), "");
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Date {
-        private int year;
-        private int month;
-        private int day;
+    public PollenLocationIndex(PollenLocationInfo.PlantInfo pollenDailyInfo, Date date, Location location) {
+        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, new ArrayList<>(), pollenDailyInfo.getPlantDescription().getCrossReaction());
     }
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class PollenTypeInfo {
-        private String code;
-        private String displayName;
-        private Boolean inSeason;
-        private IndexInfo indexInfo;
-        private List<String> healthRecommendations;
+    @Override
+    public String toString() {
+        return "Name : " + displayName + ", Index : " + index + "\n" + "Date : " + date + "\n" + "Location : " + location + "\n" + "Recommandation : " + recommendation + "\n" + "Cross : " + crossReaction;
     }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class IndexInfo {
-        private String code;
-        private String displayName;
-        private int value;
-        private String category;
-        private String indexDescription;
-        private Color color;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Color {
-        private double green;
-        private double blue;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class PlantInfo {
-        private String code;
-        private String displayName;
-        private Boolean inSeason;
-        private IndexInfo indexInfo;
-        private PlantDescription plantDescription;
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class PlantDescription {
-        private String type;
-        private String family;
-        private String season;
-        private String specialColors;
-        private String specialShapes;
-        private String crossReaction;
-        private String picture;
-        private String pictureCloseup;
-    }
-
 }

@@ -14,18 +14,16 @@ public class Symptom {
     private Date date;
     private Long beezzerId;
 
-    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine) {
+    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine, Date date) {
         this.beezzerId = beezzerId;
         this.reaction = reaction;
         this.antihistamine = antihistamine;
-        this.date = new Date();
+        this.date = date;
     }
 
-    public void updateLevel(Reaction reaction) {
-        this.reaction = reaction;
+    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine) {
+        this(beezzerId, reaction, antihistamine, new Date());
     }
 
-    public int getLevelValue() {
-        return reaction.getValue();
-    }
+
 }
