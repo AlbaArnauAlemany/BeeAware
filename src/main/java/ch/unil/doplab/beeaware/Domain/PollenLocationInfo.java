@@ -1,15 +1,16 @@
 package ch.unil.doplab.beeaware.Domain;
 
 import lombok.*;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PollenLocationInfo {
-    private Long id;
-    private String regionCode;
-    private List<DailyInfo> dailyInfo;
+    private String regionCode = "UNKNOWN";
+    private List<DailyInfo> dailyInfo = new ArrayList<>();
 
     @Data
     @NoArgsConstructor
@@ -24,64 +25,61 @@ public class PollenLocationInfo {
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Date {
-        private int year;
-        private int month;
-        private int day;
+        private int year = 0;
+        private int month = 0;
+        private int day = 0;
     }
 
     @Data
     @NoArgsConstructor
-    @AllArgsConstructor
     public static class PollenTypeInfo {
-        private String code;
-        private String displayName;
-        private Boolean inSeason;
-        private IndexInfo indexInfo;
-        private List<String> healthRecommendations;
+        private String code = "UNKNOWN";
+        private String displayName = "Unknown Pollen";
+        private Boolean inSeason = false;
+        private IndexInfo indexInfo = new IndexInfo();
+        private List<String> healthRecommendations = new ArrayList<>();
     }
 
     @Data
     @NoArgsConstructor
-    @AllArgsConstructor
     public static class IndexInfo {
-        private String code;
-        private String displayName;
-        private int value;
-        private String category;
-        private String indexDescription;
-        private Color color;
+        private String code = "N/A";
+        private String displayName = "Unknown Index";
+        private int value = 0;
+        private String category = "Uncategorized";
+        private String indexDescription = "No description";
+        private Color color = new Color(0.0, 0.0);
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     public static class Color {
-        private double green;
-        private double blue;
+        private double green = 0.0;
+        private double blue = 0.0;
     }
 
     @Data
     @NoArgsConstructor
-    @AllArgsConstructor
     public static class PlantInfo {
-        private String code;
-        private String displayName;
-        private Boolean inSeason;
-        private IndexInfo indexInfo;
-        private PlantDescription plantDescription;
+        private String code = "UNKNOWN";
+        private String displayName = "Unknown Plant";
+        private Boolean inSeason = false;
+        private IndexInfo indexInfo = new IndexInfo();
+        private PlantDescription plantDescription = new PlantDescription();
     }
 
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
     public static class PlantDescription {
-        private String type;
-        private String family;
-        private String season;
-        private String specialColors;
-        private String specialShapes;
-        private String crossReaction;
-        private String picture;
-        private String pictureCloseup;
+        private String type = "Unknown Type";
+        private String family = "Unknown Family";
+        private String season = "Unknown Season";
+        private String specialColors = "No Special Colors";
+        private String specialShapes = "No Special Shapes";
+        private String crossReaction = "None";
+        private String picture = "No Picture";
+        private String pictureCloseup = "No Closeup";
     }
 }

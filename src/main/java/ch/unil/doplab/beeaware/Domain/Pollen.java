@@ -1,5 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.*;
@@ -12,6 +13,7 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pollen {
     private Long id; // The unique identifier for the pollen type
     private String pollenNameEN; // The english name of the pollen

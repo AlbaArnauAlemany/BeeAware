@@ -1,5 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.maps.errors.ApiException;
 import lombok.*;
 
@@ -14,10 +16,12 @@ import java.io.IOException;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
     // ResourceBundle is a Java class for loading locale-specific resources
     private Long id;            // Unique identifier for the {@code Location}
     private String country;     // Country of the {@code Location}
+    @JsonProperty("NPA")
     private int NPA;            // NPA code of the {@code Location}
     private Coordinate coordinate;
 

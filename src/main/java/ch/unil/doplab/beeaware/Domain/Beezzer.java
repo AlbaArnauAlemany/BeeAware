@@ -1,5 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.maps.errors.ApiException;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Beezzer {
     private Long id;                // Unique identifier for the Beezzer
     private String username;        // Unique username of the Beezzer

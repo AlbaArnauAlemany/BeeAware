@@ -1,5 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;
@@ -7,6 +8,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Symptom {
     private Long id;
     private Reaction reaction;
@@ -24,6 +26,4 @@ public class Symptom {
     public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine) {
         this(beezzerId, reaction, antihistamine, new Date());
     }
-
-
 }

@@ -1,5 +1,6 @@
 package ch.unil.doplab.beeaware.Domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import java.util.*;
 
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PollenLocationIndex {
     private Long id;
     private String displayName;
@@ -23,8 +25,8 @@ public class PollenLocationIndex {
         this.index = index;
         this.date = date;
         this.location = location;
-        this.recommendation = recommendation;
-        this.crossReaction = crossReaction;
+        this.recommendation = recommendation == null ? new ArrayList<>() : recommendation;
+        this.crossReaction = crossReaction == null ? "" : crossReaction;
     }
     public PollenLocationIndex(PollenLocationInfo.PollenTypeInfo pollenTypeDailyInfo, Date date, Location location) {
         this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations(), "");
