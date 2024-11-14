@@ -29,7 +29,7 @@ class PollenTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             Pollen.getPollenByName("StrangePollen");
         });
-        assertEquals("This pollen doesn't exist.", exception.getMessage());
+        assertEquals("This pollen is not predefined: StrangePollen", exception.getMessage());
     }
 
     @Test

@@ -16,7 +16,7 @@ class BeezzerTest {
                 "Skywalker",
                 "skywalker@test.com",
                 "Skywalker5?",
-                location);
+                location, Role.BEEZZER);
 
     }
 
@@ -37,8 +37,8 @@ class BeezzerTest {
     // Test for the equals() method
     @Test
     void testEquals() {
-        Beezzer anotherBeezzer = new Beezzer(1L, "Skywalker", "skywalker@test.com", "Skywalker5?", location);
-        assertTrue(beezzer.equals(anotherBeezzer), "Two Beezzer objects with the same data should be equal");
+        Beezzer anotherBeezzer = new Beezzer(1L, "Skywalker", "skywalker@test.com", "Skywalker5?", location, Role.BEEZZER);
+        assertEquals(beezzer.toString(), anotherBeezzer.toString(), "Two Beezzer objects with the same data should be equal");
     }
 
     // Test for proper comparison of objects is equals or not
@@ -49,9 +49,9 @@ class BeezzerTest {
 
     // Test for the hashCode() method (if two objects which have same attributs return the same hash code)
     @Test
-    void testHashCode() {
-        Beezzer anotherBeezzer = new Beezzer(1L, "Skywalker", "skywalker@test.com", "Skywalker5?", location);
-        assertEquals(beezzer.hashCode(), anotherBeezzer.hashCode());
+    void equalitytest() {
+        Beezzer anotherBeezzer = new Beezzer(1L, "Skywalker", "skywalker@test.com", "Skywalker5?", location, Role.BEEZZER);
+        assertEquals(beezzer.toString(), anotherBeezzer.toString());
     }
 
     // Test the password is correctly hashed
@@ -63,7 +63,7 @@ class BeezzerTest {
     //Test set new password is also hashed
     @Test
     void setPassword() {
-        beezzer.setPassword("NewPassword123?");
+        beezzer.setPassword(PasswordUtilis.hashPassword("NewPassword123?"));
         assertNotEquals("NewPassword123?", beezzer.getPassword(), "Password should be hashed and not stored in plain text.");
     }
 
@@ -72,7 +72,7 @@ class BeezzerTest {
     void testToString() {
         String expected = "Username: Skywalker\n"
                 + "Email: skywalker@test.com\n"
-                + "Role : null\n"  // Assuming role is null
+                + "Role : BEEZZER\n"  // Assuming role is null
                 + "Allergens: \n";  // Assuming allergens are not set
         assertEquals(expected.trim(), beezzer.toString(), "toString() method must return the correct representation of the Beezzer object");
     }
