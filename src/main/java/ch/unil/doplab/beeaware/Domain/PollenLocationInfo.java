@@ -5,11 +5,21 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Information about pollen for a specific geographical region and date.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PollenLocationInfo {
+    /**
+     * The code representing the geographical region of the pollen.
+     */
     private String regionCode = "UNKNOWN";
+    /**
+     * A list of daily information records, each of which contains details about
+     * the date, pollen types, and plants for that specific day.
+     */
     private List<DailyInfo> dailyInfo = new ArrayList<>();
 
     @Data
