@@ -65,6 +65,7 @@ public class Beezzer {
         this.location = location; // Create a new Location instance
         this.allergens = new HashMap<>(); // Initialize the allergens set
         this.role = role;
+        this.antihistamine = null;
     }
 
     /**
@@ -83,6 +84,7 @@ public class Beezzer {
         result.append("Username: ").append(username).append("\n")
                 .append("Email: ").append(email).append("\n")
                 .append("Role : ").append(role).append("\n")
+                .append("Antihistamine : ").append(antihistamine).append("\n")
                 .append("Allergens: ");
         for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
             result.append(allergen.getValue().getPollenNameEN()).append(" ");
