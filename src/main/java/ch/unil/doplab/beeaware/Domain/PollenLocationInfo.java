@@ -32,6 +32,7 @@ public class PollenLocationInfo {
 
     @Data
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class PollenTypeInfo {
         private String code = "UNKNOWN";
         private String displayName = "Unknown Pollen";
@@ -42,6 +43,7 @@ public class PollenLocationInfo {
 
     @Data
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class IndexInfo {
         private String code = "N/A";
         private String displayName = "Unknown Index";
@@ -61,6 +63,7 @@ public class PollenLocationInfo {
 
     @Data
     @NoArgsConstructor
+    @AllArgsConstructor
     public static class PlantInfo {
         private String code = "UNKNOWN";
         private String displayName = "Unknown Plant";
