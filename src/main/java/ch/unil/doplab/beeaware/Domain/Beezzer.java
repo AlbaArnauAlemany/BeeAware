@@ -3,6 +3,7 @@ package ch.unil.doplab.beeaware.Domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.maps.errors.ApiException;
 import lombok.*;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.util.*;
@@ -35,9 +36,7 @@ public class Beezzer {
      * @param username The username for the Beezzer.
      * @param email The email address for the Beezzer.
      * @param password The password for the Beezzer, which will be hashed.
-     * @throws IOException If an input or output exception occurs.
-     * @throws InterruptedException If the operation is interrupted.
-     * @throws ApiException If there is an error with the API call used in the Location class.
+     * @param role The role of the user, it can be ADMIN or BEEZZER for lambda users.
      */
     public Beezzer(String username, String email, String password, Location location, Role role) {
         // this() calls the primary constructor (the one with the id
@@ -56,18 +55,17 @@ public class Beezzer {
      * @param username The username for the Beezzer.
      * @param email The email address for the Beezzer.
      * @param password The password for the Beezzer, which will be hashed.
-     * @throws IOException If an input or output exception occurs.
-     * @throws InterruptedException If the operation is interrupted.
-     * @throws ApiException If there is an error with the API call used in the Location class.
+     * @param role The role of the user, it can be ADMIN or BEEZZER for lambda users.
      */
     public Beezzer(Long id, String username, String email, String password, Location location, Role role) {
         this.id = id; // Assign the id to the Beezzer
-        this.username = username; // Assign the username to the Beezzer
+        this.username = username; // Assign the username to the Beezzer (username must not be bull)
         this.email = email; // Assign the email to the Beezzer
         this.password = PasswordUtilis.hashPassword(password); // Hash the password
         this.location = location; // Create a new Location instance
         this.allergens = new HashMap<>(); // Initialize the allergens set
         this.role = role;
+        this.antihistamine = null;
     }
 
     /**
@@ -86,6 +84,7 @@ public class Beezzer {
         result.append("Username: ").append(username).append("\n")
                 .append("Email: ").append(email).append("\n")
                 .append("Role : ").append(role).append("\n")
+                .append("Antihistamine : ").append(antihistamine).append("\n")
                 .append("Allergens: ");
         for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
             result.append(allergen.getValue().getPollenNameEN()).append(" ");

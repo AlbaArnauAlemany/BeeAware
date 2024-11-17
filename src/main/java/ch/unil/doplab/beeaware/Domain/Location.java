@@ -9,8 +9,8 @@ import java.io.IOException;
 
 /**
  * Represents a geographical location, defined by its latitude, longitude, country,
- * and NPA code. This class uses the Google Geocoding API to obtain latitude
- * and longitude coordinates based on NPA and country information.
+ * and NPA code. This class needs the Google Geocoding API service in our BeeAware Service
+ * to obtain latitude and longitude coordinates based on NPA and country information.
  */
 
 @Data
