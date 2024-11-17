@@ -68,3 +68,9 @@ follow the specifications in the `README.md` file
     - This class represents the details of a symptom experienced by a beezzer.
     It includes information such as the type of reaction, whether antihistamines were used, 
     the date the symptom was entered, and the unique identifier of the beezzer unique identifier.
+
+11. **Credentials**
+    - 
+
+12. **Token**:
+    - This class represents a security token used in the application for authentication and authorization purposes.
