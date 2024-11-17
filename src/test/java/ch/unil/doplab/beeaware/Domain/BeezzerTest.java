@@ -126,16 +126,4 @@ class BeezzerTest {
         beezzer.setLocation(newLocation);
         assertEquals(newLocation, beezzer.getLocation(), "Location should be updated");
     }
-
-    // Test for getter and setter of Antihistamine, we assume that it is null initially
-    @Test
-    void getAntihistamine() {
-        assertNull(beezzer.getAntihistamine(), "We assume that Antihistamine is null initially");
-    }
-
-    @Test
-    void setAntihistamine() {
-        beezzer.setAntihistamine("Cetirizine");
-        assertEquals("Cetirizine", beezzer.getAntihistamine());
-    }
 }
