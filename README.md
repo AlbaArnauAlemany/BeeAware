@@ -70,7 +70,7 @@ follow the specifications in the `README.md` file
     the date the symptom was entered, and the unique identifier of the beezzer unique identifier.
 
 11. **Credentials**
-    - 
+    - Contains the information used to authenticate a beezzer.
 
 12. **Token**:
     - This class represents a security token used in the application for authentication and authorization purposes.
