@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * The {@code Pollen} class represents a type of pollen with a unique ID and a name.
  * It also maintains a predefined list of pollens and provides functionality
- * to retrieve them based on country-specific data.
+ * to retrieve them.
  */
 
 @Data

@@ -1,7 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
 /**
- * Represents the intensity of a reaction.
+ * Represents the intensity of a reaction used to construct a Symptom.
  * The reaction intensity is categorized into six levels ranging from no reaction to very high reaction.
  */
 

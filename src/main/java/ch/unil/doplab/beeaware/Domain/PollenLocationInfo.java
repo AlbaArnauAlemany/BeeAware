@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PollenLocationInfo {
     /**
-     * The code representing the geographical region of the pollen.
+     * RegionCode is the code representing the geographical region of the pollen.
      */
     private String regionCode = "UNKNOWN";
     /**

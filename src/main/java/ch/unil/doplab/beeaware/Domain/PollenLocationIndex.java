@@ -8,7 +8,8 @@ import lombok.NoArgsConstructor;
 import java.util.*;
 
 /**
- * Represents an index of pollen charge and related information in a particular location.
+ * Represents an index of pollen charge and related information in a particular location
+ * and date, constructed based on the PollenLocationInfo class.
  * This class includes details such as the pollen name, pollen charge, date,
  * location, health recommendations, and potential cross-reactions.
  */
