@@ -36,11 +36,10 @@ public class Location {
      * @throws InterruptedException If the API request is interrupted.
      * @throws IOException If an input or output exception occurs.
      */
-    public Location(int NPA, String country, Coordinate coordinate, String cityName){
+    public Location(int NPA, String country, Coordinate coordinate){
         this.NPA = NPA;
         this.country = country;
-        this.coordinate = coordinate;   // Method to set the latitude and longitude based on NPA and country
-        this.cityName = cityName;
+        this.coordinate = coordinate;
     }
 
     public Location(int NPA, String country){
