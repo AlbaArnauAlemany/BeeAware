@@ -22,8 +22,9 @@ public class Location {
     private Long id;            // Unique identifier for the {@code Location}
     private String country;     // Country of the {@code Location}
     @JsonProperty("NPA")
-    private int NPA;            // NPA code of the {@code Location}
+    private int NPA; // NPA code of the {@code Location}
     private Coordinate coordinate;
+    private String cityName;
 
     /**
      * Constructs a Location object using the specified National Postal Area (NPA) and country.
@@ -35,10 +36,11 @@ public class Location {
      * @throws InterruptedException If the API request is interrupted.
      * @throws IOException If an input or output exception occurs.
      */
-    public Location(int NPA, String country, Coordinate coordinate){
+    public Location(int NPA, String country, Coordinate coordinate, String cityName){
         this.NPA = NPA;
         this.country = country;
         this.coordinate = coordinate;   // Method to set the latitude and longitude based on NPA and country
+        this.cityName = cityName;
     }
 
     public Location(int NPA, String country){

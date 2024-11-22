@@ -88,6 +88,7 @@ public class Beezzer {
         }
         System.out.println("ID: " + location.getId());
         System.out.println("NPA: " + location.getNPA());
+        System.out.println("City Name" + location.getCityName());
         System.out.println("Country:" + location.getCountry());
         System.out.println("Latitude: " + location.getCoordinate().getLatitude());
         System.out.println("Longitude: " + location.getCoordinate().getLongitude());
