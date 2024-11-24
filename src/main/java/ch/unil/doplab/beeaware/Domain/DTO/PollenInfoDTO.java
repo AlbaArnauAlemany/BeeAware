@@ -1,6 +1,5 @@
 package ch.unil.doplab.beeaware.Domain.DTO;
 
-import ch.unil.doplab.beeaware.Domain.Location;
 import ch.unil.doplab.beeaware.Domain.PollenLocationIndex;
 import lombok.AllArgsConstructor;
 import lombok.Data;

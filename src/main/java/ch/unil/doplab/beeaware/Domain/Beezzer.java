@@ -60,7 +60,7 @@ public class Beezzer {
         this.id = id; // Assign the id to the Beezzer
         this.username = username; // Assign the username to the Beezzer (username must not be bull)
         this.email = email; // Assign the email to the Beezzer
-        this.password = PasswordUtilis.hashPassword(password); // Hash the password
+        this.password = password;
         this.location = location; // Create a new Location instance
         this.allergens = new HashMap<>(); // Initialize the allergens set
         this.role = role;
