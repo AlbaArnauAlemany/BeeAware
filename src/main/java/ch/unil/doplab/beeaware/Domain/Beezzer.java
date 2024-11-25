@@ -43,6 +43,13 @@ public class Beezzer {
         this(null, username, email, password, location, role);
     }
 
+    public Beezzer(String username, String email) {
+        // this() calls the primary constructor (the one with the id
+        // parameter) by passing null as the id argument
+        this.username = username;
+        this.email = email;
+    }
+
     /**
      * Constructs a new Beezzer object with the specified id, username, email,
      * password, NPA, and country. The password is hashed for security, and the
@@ -57,13 +64,29 @@ public class Beezzer {
      * @param role The role of the user, it can be ADMIN or BEEZZER for lambda users.
      */
     public Beezzer(Long id, String username, String email, String password, Location location, Role role) {
-        this.id = id; // Assign the id to the Beezzer
-        this.username = username; // Assign the username to the Beezzer (username must not be bull)
-        this.email = email; // Assign the email to the Beezzer
-        this.password = password;
-        this.location = location; // Create a new Location instance
+
+        if (id != null) {
+            this.id = id; // Assign the id to the Beezzer
+        }
+        if (username != null) {
+            this.username = username; // Assign the username to the Beezzer (username must not be bull)
+        }
+        if (email != null) {
+            this.email = email; // Assign the email to the Beezzer
+        }
+
+        if (password != null) {
+            this.password = password;
+        }
+        if (location != null) {
+            this.location = location; // Create a new Location instance
+        }
+
         this.allergens = new HashMap<>(); // Initialize the allergens set
-        this.role = role;
+
+        if (role != null) {
+            this.role = role;
+        }
     }
 
     /**
@@ -79,19 +102,31 @@ public class Beezzer {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        result.append("Username: ").append(username).append("\n")
-                .append("Email: ").append(email).append("\n")
-                .append("Role : ").append(role).append("\n")
-                .append("Allergens: ");
-        for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
-            result.append(allergen.getValue().getPollenNameEN()).append(" ");
+        if (username != null) {
+            result.append("Username: ").append(username).append("\n");
         }
-        System.out.println("ID: " + location.getId());
-        System.out.println("NPA: " + location.getNPA());
-        System.out.println("City Name" + location.getCityName());
-        System.out.println("Country:" + location.getCountry());
-        System.out.println("Latitude: " + location.getCoordinate().getLatitude());
-        System.out.println("Longitude: " + location.getCoordinate().getLongitude());
+        if (email != null) {
+            result.append("Email: ").append(email).append("\n");
+        }
+        if (role != null) {
+            result.append("Role : ").append(role).append("\n");
+        }
+        if (allergens != null) {
+            result.append("Allergens: ");
+            for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
+                result.append(allergen.getValue().getPollenNameEN()).append(" ");
+            }
+        }
+        if (location != null) {
+            result.append("ID: " + location.getId());
+            result.append("NPA: " + location.getNPA());
+            result.append("City Name" + location.getCityName());
+            result.append("Country:" + location.getCountry());
+            if (location.getCoordinate() != null) {
+                result.append("Latitude: " + location.getCoordinate().getLatitude());
+                result.append("Longitude: " + location.getCoordinate().getLongitude());
+            }
+        }
         return result.toString().trim();
     }
 }
