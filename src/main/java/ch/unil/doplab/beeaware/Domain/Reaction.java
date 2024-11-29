@@ -34,4 +34,9 @@ public enum Reaction {
             default -> throw new IllegalArgumentException("Invalid level value: " + value);
         };
     }
+
+    @Override
+    public String toString() {
+        return name().replace('_', ' ');
+    }
 }
