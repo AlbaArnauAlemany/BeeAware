@@ -23,6 +23,7 @@ public class PollenLocationIndex {
     private Location location;
     private List<String> recommendation;
     private String crossReaction;
+    private String indexDescription;
 
     /**
      * Constructs a PollenLocationIndex object with specified parameters.
@@ -33,26 +34,28 @@ public class PollenLocationIndex {
      * @param location The location associated with the pollen index.
      * @param recommendation A list of health recommendations related to the pollen index.
      * @param crossReaction Information about potential cross-reactions with other allergens.
+     * @param indexDescription Information about the index.
      */
-    PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction){
+    PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction, String indexDescription){
         this.displayName = displayName;
         this.index = index;
         this.date = date;
         this.location = location;
         this.recommendation = recommendation == null ? new ArrayList<>() : recommendation;
-        this.crossReaction = crossReaction == null ? "" : crossReaction;
+        this.crossReaction = crossReaction == null ? "No crossReaction" : crossReaction;
+        this.indexDescription = indexDescription == null ? "No description" : indexDescription;
     }
 
     public PollenLocationIndex(PollenLocationInfo.PollenTypeInfo pollenTypeDailyInfo, Date date, Location location) {
-        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations(), "");
+        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations(), "", pollenTypeDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     public PollenLocationIndex(PollenLocationInfo.PlantInfo pollenDailyInfo, Date date, Location location) {
-        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, new ArrayList<>(), pollenDailyInfo.getPlantDescription().getCrossReaction());
+        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, new ArrayList<>(), pollenDailyInfo.getPlantDescription().getCrossReaction(), pollenDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     @Override
     public String toString() {
-        return "Name : " + displayName + ", Index : " + index + "\n" + "Date : " + date + "\n" + "Location : " + location + "\n" + "Recommandation : " + recommendation + "\n" + "Cross : " + crossReaction;
+        return "Name : " + displayName + ", Index : " + index + "\n" + "Date : " + date + "\n" + "Location : " + location + "\n" + "Recommendation : " + recommendation + "\n" + "Cross : " + crossReaction;
     }
 }
