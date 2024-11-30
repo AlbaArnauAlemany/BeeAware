@@ -12,18 +12,18 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SymptomsDTO {
-    private Reaction level;
+    private int reaction;
     private boolean antihistamine;
     private Date date;
 
     public SymptomsDTO(Symptom symptom) {
-        this.level = symptom.getReaction();
+        this.reaction = symptom.getReaction();
         this.antihistamine = symptom.isAntihistamine();
         this.date = symptom.getDate();
     }
 
     @Override
     public String toString() {
-        return "Date : " + date + ", Level of reaction: " + level + "\n" + "Antihistamine taken? " + antihistamine;
+        return "Date : " + date + ", Level of reaction: " + reaction + "\n" + "Antihistamine taken? " + antihistamine;
     }
 }

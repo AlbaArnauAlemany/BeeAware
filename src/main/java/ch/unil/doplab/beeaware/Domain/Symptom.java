@@ -17,7 +17,7 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Symptom {
     private Long id;
-    private Reaction reaction;
+    private int reaction;
     private boolean antihistamine;
     private Date date;
     private Long beezzerId;
@@ -30,14 +30,14 @@ public class Symptom {
      * @param antihistamine Indicates whether antihistamines were used.
      * @param date The date the symptom was entered.
      */
-    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine, Date date) {
+    public Symptom(Long beezzerId, int reaction, boolean antihistamine, Date date) {
         this.beezzerId = beezzerId;
         this.reaction = reaction;
         this.antihistamine = antihistamine;
         this.date = date;
     }
 
-    public Symptom(Long beezzerId, Reaction reaction, boolean antihistamine) {
+    public Symptom(Long beezzerId, int reaction, boolean antihistamine) {
         this(beezzerId, reaction, antihistamine, new Date());
     }
 }
