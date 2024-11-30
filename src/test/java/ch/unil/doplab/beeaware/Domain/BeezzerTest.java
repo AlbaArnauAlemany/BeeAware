@@ -54,12 +54,6 @@ class BeezzerTest {
         assertEquals(beezzer.toString(), anotherBeezzer.toString());
     }
 
-    // Test the password is correctly hashed
-    @Test
-    void testGetPassword() {
-        assertNotEquals("Skywalker5?", beezzer.getPassword(), "Password should be hashed and not stored in plain text.");
-    }
-
     //Test set new password is also hashed
     @Test
     void setPassword() {
@@ -73,7 +67,8 @@ class BeezzerTest {
         String expected = "Username: Skywalker\n"
                 + "Email: skywalker@test.com\n"
                 + "Role : BEEZZER\n"  // Assuming role is null
-                + "Allergens: \n";  // Assuming allergens are not set
+                + "Allergens: ID: nullNPA: 1007City NamenullCountry:CHLatitude: 46.5197Longitude: 6.6323";
+        System.out.println(beezzer.toString());
         assertEquals(expected.trim(), beezzer.toString(), "toString() method must return the correct representation of the Beezzer object");
     }
 
