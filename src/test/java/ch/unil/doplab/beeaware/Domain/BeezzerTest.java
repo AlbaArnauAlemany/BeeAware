@@ -68,6 +68,7 @@ class BeezzerTest {
                 + "Email: skywalker@test.com\n"
                 + "Role : BEEZZER\n"  // Assuming role is null
                 + "Allergens: ID: nullNPA: 1007City NamenullCountry:CHLatitude: 46.5197Longitude: 6.6323";
+        //TODO : TO FIX 30.11.2024
         System.out.println(beezzer.toString());
         assertEquals(expected.trim(), beezzer.toString(), "toString() method must return the correct representation of the Beezzer object");
     }
