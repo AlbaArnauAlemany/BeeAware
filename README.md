@@ -55,22 +55,18 @@ follow the specifications in the `README.md` file
     - Information about pollen for a specific geographical region and date retrived from the
     Google Pollen API.
 
-8. **Reaction**:
-    - Represents the intensity of a reaction used to construct a Symptom. The reaction intensity
-    is categorized into six levels ranging from no reaction to very high reaction.
-
-9. **Role**:
+8. **Role**:
     - Represent a specific role within the beezzers that gives you certain accesses for our API.
    ADMIN is a role that grants access to every resource, BEEZZER is restricted to call for
    only for your unique identifier.
 
-10. **Symptom**:
+9. **Symptom**:
     - This class represents the details of a symptom experienced by a beezzer.
     It includes information such as the type of reaction, whether antihistamines were used, 
     the date the symptom was entered, and the unique identifier of the beezzer unique identifier.
 
-11. **Credentials**
+10. **Credentials**
     - Contains the information used to authenticate a beezzer.
 
-12. **Token**:
+11. **Token**:
     - This class represents a security token used in the application for authentication and authorization purposes.

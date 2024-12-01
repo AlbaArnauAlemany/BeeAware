@@ -1,6 +1,5 @@
 package ch.unil.doplab.beeaware.Domain.DTO;
 
-import ch.unil.doplab.beeaware.Domain.Reaction;
 import ch.unil.doplab.beeaware.Domain.Symptom;
 import lombok.AllArgsConstructor;
 import lombok.Data;

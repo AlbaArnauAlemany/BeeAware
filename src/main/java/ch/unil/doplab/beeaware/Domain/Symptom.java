@@ -26,7 +26,7 @@ public class Symptom {
      * Constructs a new Symptom object with the specified parameters.
      *
      * @param beezzerId The unique identifier of the user experiencing the symptom.
-     * @param reaction The level of Reaction experienced by the user.
+     * @param reaction The level of reaction experienced by the user.
      * @param antihistamine Indicates whether antihistamines were used.
      * @param date The date the symptom was entered.
      */
