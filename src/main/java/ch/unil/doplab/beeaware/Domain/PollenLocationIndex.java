@@ -36,7 +36,7 @@ public class PollenLocationIndex {
      * @param crossReaction Information about potential cross-reactions with other allergens.
      * @param indexDescription Information about the index.
      */
-    PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction, String indexDescription){
+    public PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction, String indexDescription){
         this.displayName = displayName;
         this.index = index;
         this.date = date;
