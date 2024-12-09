@@ -14,12 +14,23 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Pollen {
+
+    @Id
+    @Column(name = "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id; // The unique identifier for the pollen type
+
+    @Column(name = "POLLENAME")
     private String pollenNameEN; // The english name of the pollen
 
     // A map of predefined pollen types
     private static final Map<String, Pollen> predefinedPollens = new HashMap<>();
+
+    //TODO: Applicable ici??
+    @ManyToOne
+    private Beezzer beezzer;
 
     // Static initializer for predefined pollens
     // API Swiss pollens: hazel, alder, ash, birch, cottonwood, oak, olive, pine, grasses, ragweed, mugwort

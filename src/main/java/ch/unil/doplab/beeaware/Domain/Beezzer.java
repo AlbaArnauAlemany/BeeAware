@@ -3,6 +3,7 @@ package ch.unil.doplab.beeaware.Domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.maps.errors.ApiException;
 import lombok.*;
+import org.intellij.lang.annotations.Identifier;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -17,14 +18,32 @@ import java.util.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class Beezzer {
+
+    @Id
+    @Column(name= "ID", nullable = false)
+    @GeneratedValue(Strategy = GenerationType.AUTO)
     private Long id;                // Unique identifier for the Beezzer
+
+    @Column(name = "USERNAME")
     private String username;        // Unique username of the Beezzer
+
+    @Column(name = "EMAIL")
     private String email;           // Email address of the Beezzer
+
+    @Column(name = "PASSWORD")
     private String password;        // Password of the Beezzer, hashed for security
+
+    @Column(name = "LOCATION")
+    // TODO: ID of a location c'est mieux?
     private Location location;      // Location of the Beezzer composed of NPA & Country
+
+    // TODO: ID pollen only?
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private Map<Long, Pollen> allergens;  // Set of pollen allergens for the Beezzer
 
+    @Column(name = "ROLE")
     private Role role;
     /**
      * Constructs a new Beezzer object with the specified username, email,
