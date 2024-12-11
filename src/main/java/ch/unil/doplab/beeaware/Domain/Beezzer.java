@@ -2,6 +2,7 @@ package ch.unil.doplab.beeaware.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.maps.errors.ApiException;
+import jakarta.persistence.*;
 import lombok.*;
 import org.intellij.lang.annotations.Identifier;
 import org.jetbrains.annotations.NotNull;
@@ -23,7 +24,7 @@ public class Beezzer {
 
     @Id
     @Column(name= "ID", nullable = false)
-    @GeneratedValue(Strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;                // Unique identifier for the Beezzer
 
     @Column(name = "USERNAME")
@@ -35,8 +36,8 @@ public class Beezzer {
     @Column(name = "PASSWORD")
     private String password;        // Password of the Beezzer, hashed for security
 
-    @Column(name = "LOCATION")
-    // TODO: ID of a location c'est mieux?
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "LOCATION")
     private Location location;      // Location of the Beezzer composed of NPA & Country
 
     // TODO: ID pollen only?

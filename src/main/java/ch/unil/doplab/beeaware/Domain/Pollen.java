@@ -1,6 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.*;
@@ -15,21 +16,23 @@ import java.util.*;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @Entity
+@AllArgsConstructor
 public class Pollen {
 
     @Id
     @Column(name = "ID", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // The unique identifier for the pollen type
 
-    @Column(name = "POLLENAME")
+    @Column(name = "POLLENAMEEN")
     private String pollenNameEN; // The english name of the pollen
 
     // A map of predefined pollen types
     private static final Map<String, Pollen> predefinedPollens = new HashMap<>();
 
-    //TODO: Applicable ici??
+
     @ManyToOne
+    @JoinColumn(name = "beezzer_id", nullable = false)
     private Beezzer beezzer;
 
     // Static initializer for predefined pollens

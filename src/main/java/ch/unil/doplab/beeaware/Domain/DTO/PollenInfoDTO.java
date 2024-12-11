@@ -20,7 +20,7 @@ public class PollenInfoDTO {
 
     public PollenInfoDTO(PollenLocationIndex pollenLocationIndex) {
         this.displayName = pollenLocationIndex.getDisplayName();
-        this.index = pollenLocationIndex.getIndex();
+        this.index = pollenLocationIndex.getIndexCharge();
         this.date = pollenLocationIndex.getDate();
         this.NPA = pollenLocationIndex.getLocation().getNPA();
         this.indexDescription = pollenLocationIndex.getIndexDescription();

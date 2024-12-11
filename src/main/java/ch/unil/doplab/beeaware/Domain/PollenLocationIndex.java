@@ -1,6 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,14 +16,26 @@ import java.util.*;
 @Data
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@Entity
 public class PollenLocationIndex {
+    @Id
+    @Column(name= "ID", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "DISPLAYNAME")
     private String displayName;
-    private int index;
+    @Column(name = "INDEXCHARGE")
+    private int indexCharge;
+    @Column(name = "DATE")
     private Date date;
+    @OneToOne
+    @JoinColumn(name = "location_id", nullable = false)
     private Location location;
-    private List<String> recommendation;
+    @Column(name = "RECOMMENDATION")
+    private String recommendation;
+    @Column(name = "CROSSREACTION")
     private String crossReaction;
+    @Column(name = "INDEXDESCRIPTION")
     private String indexDescription;
 
     /**
@@ -36,26 +49,26 @@ public class PollenLocationIndex {
      * @param crossReaction Information about potential cross-reactions with other allergens.
      * @param indexDescription Information about the index.
      */
-    public PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction, String indexDescription){
+    public PollenLocationIndex(String displayName, int index, Date date, Location location, String recommendation, String crossReaction, String indexDescription){
         this.displayName = displayName;
-        this.index = index;
+        this.indexCharge = index;
         this.date = date;
         this.location = location;
-        this.recommendation = recommendation == null ? new ArrayList<>() : recommendation;
+        this.recommendation = recommendation == null ? "" : recommendation;
         this.crossReaction = crossReaction == null ? "No crossReaction" : crossReaction;
         this.indexDescription = indexDescription == null ? "No description" : indexDescription;
     }
 
     public PollenLocationIndex(PollenLocationInfo.PollenTypeInfo pollenTypeDailyInfo, Date date, Location location) {
-        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations(), "", pollenTypeDailyInfo.getIndexInfo().getIndexDescription());
+        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations().get(0), "", pollenTypeDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     public PollenLocationIndex(PollenLocationInfo.PlantInfo pollenDailyInfo, Date date, Location location) {
-        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, new ArrayList<>(), pollenDailyInfo.getPlantDescription().getCrossReaction(), pollenDailyInfo.getIndexInfo().getIndexDescription());
+        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, "", pollenDailyInfo.getPlantDescription().getCrossReaction(), pollenDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     @Override
     public String toString() {
-        return "Name : " + displayName + ", Index : " + index + "\n" + "Date : " + date + "\n" + "Location : " + location + "\n" + "Recommendation : " + recommendation + "\n" + "Cross : " + crossReaction;
+        return "Name : " + displayName + ", Index : " + indexCharge + "\n" + "Date : " + date + "\n" + "Location : " + location + "\n" + "Recommendation : " + recommendation + "\n" + "Cross : " + crossReaction;
     }
 }
