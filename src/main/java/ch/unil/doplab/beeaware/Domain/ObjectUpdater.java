@@ -1,6 +1,7 @@
 package ch.unil.doplab.beeaware.Domain;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 public class ObjectUpdater {
 
@@ -14,6 +15,11 @@ public class ObjectUpdater {
         try {
             for (Field field : clazz.getDeclaredFields()) {
                 field.setAccessible(true);
+
+                // Ignorer les champs "id" ou les champs static/final
+                if ("id".equals(field.getName()) || Modifier.isStatic(field.getModifiers()) || Modifier.isFinal(field.getModifiers())) {
+                    continue;
+                }
 
                 Object sourceValue = field.get(source);
                 if (sourceValue != null) {

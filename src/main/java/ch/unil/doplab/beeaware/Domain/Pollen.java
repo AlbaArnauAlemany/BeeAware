@@ -31,9 +31,8 @@ public class Pollen {
     private static final Map<String, Pollen> predefinedPollens = new HashMap<>();
 
 
-    @ManyToOne
-    @JoinColumn(name = "beezzer_id", nullable = false)
-    private Beezzer beezzer;
+    @ManyToMany(mappedBy = "allergens")
+    private List<Beezzer> beezzer;
 
     // Static initializer for predefined pollens
     // API Swiss pollens: hazel, alder, ash, birch, cottonwood, oak, olive, pine, grasses, ragweed, mugwort

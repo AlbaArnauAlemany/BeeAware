@@ -11,13 +11,12 @@ import java.util.Map;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class AllergenDTO {
     List<PollenDTO> pollenList = new ArrayList<>();
 
-    public AllergenDTO(Map<Long, Pollen> allergens) {
-        for (Map.Entry<Long, Pollen> pollen : allergens.entrySet()) {
-            PollenDTO pollenDTO = new PollenDTO(pollen.getValue());
+    public AllergenDTO(List<Pollen> allergens) {
+        for (Pollen pollen : allergens) {
+            PollenDTO pollenDTO = new PollenDTO(pollen);
             pollenList.add(pollenDTO);
         }
     }

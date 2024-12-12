@@ -40,9 +40,13 @@ public class Beezzer {
     @JoinColumn(name = "LOCATION")
     private Location location;      // Location of the Beezzer composed of NPA & Country
 
-    // TODO: ID pollen only?
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Map<Long, Pollen> allergens;  // Set of pollen allergens for the Beezzer
+    @ManyToMany
+    @JoinTable(
+            name = "allergens",
+            joinColumns = @JoinColumn(name = "beezzer_id"),
+            inverseJoinColumns = @JoinColumn(name = "pollen_id")
+    )
+    private List<Pollen> allergens;  // Set of pollen allergens for the Beezzer
 
     @Column(name = "ROLE")
     private Role role;
@@ -102,7 +106,7 @@ public class Beezzer {
             this.location = location; // Create a new Location instance
         }
 
-        this.allergens = new HashMap<>(); // Initialize the allergens set
+        this.allergens = new ArrayList<>(); // Initialize the allergens set
 
         if (role != null) {
             this.role = role;
@@ -133,8 +137,8 @@ public class Beezzer {
         }
         if (allergens != null) {
             result.append("Allergens: ");
-            for (Map.Entry<Long, Pollen> allergen : allergens.entrySet()) {
-                result.append(allergen.getValue().getPollenNameEN()).append(" ");
+            for (Pollen allergen : allergens) {
+                result.append(allergen.getPollenNameEN()).append(" ");
             }
         }
         if (location != null) {

@@ -49,22 +49,22 @@ public class PollenLocationIndex {
      * @param crossReaction Information about potential cross-reactions with other allergens.
      * @param indexDescription Information about the index.
      */
-    public PollenLocationIndex(String displayName, int index, Date date, Location location, String recommendation, String crossReaction, String indexDescription){
+    public PollenLocationIndex(String displayName, int index, Date date, Location location, List<String> recommendation, String crossReaction, String indexDescription){
         this.displayName = displayName;
         this.indexCharge = index;
         this.date = date;
         this.location = location;
-        this.recommendation = recommendation == null ? "" : recommendation;
+        this.recommendation = recommendation != null ? recommendation.get(0) != null ? recommendation.get(0) : "" : "";
         this.crossReaction = crossReaction == null ? "No crossReaction" : crossReaction;
         this.indexDescription = indexDescription == null ? "No description" : indexDescription;
     }
 
     public PollenLocationIndex(PollenLocationInfo.PollenTypeInfo pollenTypeDailyInfo, Date date, Location location) {
-        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, pollenTypeDailyInfo.getHealthRecommendations().get(0), "", pollenTypeDailyInfo.getIndexInfo().getIndexDescription());
+        this(pollenTypeDailyInfo.getDisplayName(), pollenTypeDailyInfo.getIndexInfo().getValue(), date, location, null, "", pollenTypeDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     public PollenLocationIndex(PollenLocationInfo.PlantInfo pollenDailyInfo, Date date, Location location) {
-        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, "", pollenDailyInfo.getPlantDescription().getCrossReaction(), pollenDailyInfo.getIndexInfo().getIndexDescription());
+        this(pollenDailyInfo.getDisplayName(), pollenDailyInfo.getIndexInfo().getValue(), date, location, null, pollenDailyInfo.getPlantDescription().getCrossReaction(), pollenDailyInfo.getIndexInfo().getIndexDescription());
     }
 
     @Override

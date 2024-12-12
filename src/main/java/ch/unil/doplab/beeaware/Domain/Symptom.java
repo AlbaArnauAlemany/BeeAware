@@ -28,26 +28,25 @@ public class Symptom {
     private boolean antihistamine;
     @Column(name = "DATE")
     private Date date;
-    @OneToOne
-    @JoinColumn(name = "beezzer_id", nullable = false)
-    private Beezzer beezzer;
+    @Column(name = "BEEZZER_ID", nullable = false)
+    private Long beezzerId;
 
     /**
      * Constructs a new Symptom object with the specified parameters.
      *
-     * @param beezzer The unique identifier of the user experiencing the symptom.
+     * @param beezzerId The unique identifier of the user experiencing the symptom.
      * @param reaction The level of reaction experienced by the user.
      * @param antihistamine Indicates whether antihistamines were used.
      * @param date The date the symptom was entered.
      */
-    public Symptom(Beezzer beezzer, int reaction, boolean antihistamine, Date date) {
-        this.beezzer = beezzer;
+    public Symptom(Long beezzerId, int reaction, boolean antihistamine, Date date) {
+        this.beezzerId = beezzerId;
         this.reaction = reaction;
         this.antihistamine = antihistamine;
         this.date = date;
     }
 
-    public Symptom(Beezzer beezzer, int reaction, boolean antihistamine) {
-        this(beezzer, reaction, antihistamine, new Date());
+    public Symptom(Long beezzerId, int reaction, boolean antihistamine) {
+        this(beezzerId, reaction, antihistamine, new Date());
     }
 }
