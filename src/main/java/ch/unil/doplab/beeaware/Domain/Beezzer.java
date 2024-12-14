@@ -36,7 +36,7 @@ public class Beezzer {
     @Column(name = "PASSWORD")
     private String password;        // Password of the Beezzer, hashed for security
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "LOCATION")
     private Location location;      // Location of the Beezzer composed of NPA & Country
 
